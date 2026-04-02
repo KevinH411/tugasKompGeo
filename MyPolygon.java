@@ -49,7 +49,7 @@ public class MyPolygon {
      * @return
      */
     boolean isPointInside(MyPoint p) {
-		double inside = true;
+		boolean inside = true;
 		
         return inside;
     }
