@@ -31,8 +31,7 @@ public class MyPoint {
      * @return
      */
     double distanceToLineSegment(MyLineSegment l) {
-		double res = 0.0;
         //panggil aja dari l, l.distanceToPoint(this);
-        return res;
+        return l.distanceToPoint(this);
     }
 }
