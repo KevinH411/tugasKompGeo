@@ -16,9 +16,9 @@ public class CG {
         return res;
     }
 
-    private static MyPoint convertToVector(MyPoint p1, MyPoint p2) {
+    private static MyPoint convertToVector(MyLineSegment line) {
         // konversi vektor ke origin 0,0
-        return new MyPoint(p2.x - p1.x, p2.y - p1.y);
+        return new MyPoint(line.end.x - line.start.x, line.end.y - line.start.y);
     }
 
     /**
@@ -26,9 +26,9 @@ public class CG {
      * 
      * @return
      */
-    public static double dot(MyPoint p1, MyPoint p2, MyPoint q1, MyPoint q2) {
-        MyPoint vectorP = convertToVector(p1, p2);
-        MyPoint vectorQ = convertToVector(q1, q2);
+    public static double dot(MyLineSegment line1, MyLineSegment line2) {
+        MyPoint vectorP = convertToVector(line1);
+        MyPoint vectorQ = convertToVector(line2);
         return (vectorP.x * vectorQ.x) + (vectorP.y * vectorQ.y);
     }
 
