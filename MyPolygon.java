@@ -57,6 +57,12 @@ public class MyPolygon {
      */
     boolean isPointInside(MyPoint p) {
         boolean inside = true;
+        /**
+         * akan loop dari p0 ke pn, buat vektor pi pi+1, lalu cek arah ke p.
+         * jika kanan berarti p sudah pasti di luar.
+         * jika searah akan di cek dengan menghitung distance line ke point, jika bukan
+         * 0 maka p diluar.
+         */
         for (int i = 0; i < this.Points.size() && inside == true; i++) {
             MyPoint p1 = Points.get(i);
             MyPoint p2 = Points.get((i + 1) % Points.size());
