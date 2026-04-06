@@ -44,4 +44,10 @@ public class CG {
     public static MyPoint cross(MyPoint p, MyPoint q) {
         return new MyPoint(0, 0);
     }
+
+    public static double cross(MyLineSegment line1, MyLineSegment line2) {
+        MyPoint vectorP = convertToVector(line1);
+        MyPoint vectorQ = convertToVector(line2);
+        return (vectorP.x * vectorQ.y) - (vectorP.y * vectorQ.x);
+    }
 }
