@@ -21,7 +21,8 @@ public class MyPoint {
      */
     double distanceToOtherPoints(MyPoint o) {
 		double dist = 0.0;
-		
+		dist = ((this.x-o.x)*(this.x-o.x)) + ((this.y - o.y) * (this.y - o.y));
+        dist = Math.sqrt(dist);
         return dist;
     }
     
