@@ -23,6 +23,7 @@ public class MyPolygon {
      * @return
      */
     boolean addPoint(MyPoint p) {
+        this.Points.add(p);
         return true;
     }
 
@@ -33,7 +34,26 @@ public class MyPolygon {
      */
     boolean isConvex() {
         boolean convex = true;
+        int n = this.Points.size();
+        
+        // minimal butuh 3 titik
+        if (n < 3) return false;
 
+        // Cek setiap triplet titik yang berurutan: (p_i, p_{i+1}, p_{i+2})
+        for (int i = 0; i < n; i++) {
+            MyPoint p1 = this.Points.get(i);
+            MyPoint p2 = this.Points.get((i + 1) % n); // Titik selanjutnya (dengan modulo agar kembali ke indeks 0)
+            MyPoint p3 = this.Points.get((i + 2) % n); // Titik setelahnya lagi
+            
+            double res = CG.ccw(p1, p2, p3);
+            
+            // Karena titik input sudah terurut berlawanan arah jarum jam (kiri),
+            // maka jika ada satu saja belokan ke kanan (res < 0), poligon adalah concave.
+            if (res < 0.0) {
+                convex = false;
+                break; // Tidak perlu lanjut mengecek jika sudah pasti concave
+            }
+        }
         return convex;
     }
 

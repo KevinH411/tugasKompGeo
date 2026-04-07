@@ -58,7 +58,23 @@ public class MyMain {
 					System.out.println("Tidak");
 				}
 			}
-			else if (5==ch) {}
+			//Fungsi nomor 5
+			else if (5 == ch) {
+				int n = sc.nextInt();
+				MyPolygon polygon = new MyPolygon();
+				
+				// Membaca n buah titik dan menambahkannya ke poligon
+				for(int i = 0; i < n; i++){
+					polygon.addPoint(new MyPoint(sc.nextDouble(), sc.nextDouble()));
+				}
+				
+				// Cek convex / concave dan cetak hasilnya
+				if (polygon.isConvex()) {
+					System.out.println("Convex");
+				} else {
+					System.out.println("Concave");
+				}
+			}
 			else if (6==ch) {}
 			//Fungsi nomor 7
 			else if (7==ch) {
