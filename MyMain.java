@@ -38,20 +38,16 @@ public class MyMain {
 			}
 			// Fungsi nomor 4: Apakah dua buah segmen garis saling berpotongan?
 			else if (4 == ch) {
-				// Membaca 8 buah bilangan (x1, y1, x2, y2, x3, y3, x4, y4)
-				// Segmen pertama l1 = {p, q}
+
 				MyPoint p = new MyPoint(sc.nextDouble(), sc.nextDouble());
 				MyPoint q = new MyPoint(sc.nextDouble(), sc.nextDouble());
 
-    			// Segmen kedua l2 = {r, s}
     			MyPoint r = new MyPoint(sc.nextDouble(), sc.nextDouble());
     			MyPoint s = new MyPoint(sc.nextDouble(), sc.nextDouble());
     
-    			// Inisialisasi objek Line Segment
     			MyLineSegment l1 = new MyLineSegment(p, q);
     			MyLineSegment l2 = new MyLineSegment(r, s);
     
-    			// Cek perpotongan dan tampilkan output sesuai spesifikasi
     			if (l1.isIntersect(l2)) {
 					System.out.println("Ya");
 				} else {
@@ -63,19 +59,27 @@ public class MyMain {
 				int n = sc.nextInt();
 				MyPolygon polygon = new MyPolygon();
 				
-				// Membaca n buah titik dan menambahkannya ke poligon
 				for(int i = 0; i < n; i++){
 					polygon.addPoint(new MyPoint(sc.nextDouble(), sc.nextDouble()));
 				}
 				
-				// Cek convex / concave dan cetak hasilnya
 				if (polygon.isConvex()) {
 					System.out.println("Convex");
 				} else {
 					System.out.println("Concave");
 				}
 			}
-			else if (6==ch) {}
+			// Fungsi nomor 6
+			else if (6 == ch) {
+				int n = sc.nextInt();
+				MyPolygon polygon = new MyPolygon();
+				
+    			for(int i = 0; i < n; i++){
+					polygon.addPoint(new MyPoint(sc.nextDouble(), sc.nextDouble()));
+				}
+				
+				System.out.printf("%.3f\n", polygon.area());
+			}
 			//Fungsi nomor 7
 			else if (7==ch) {
 				int n = sc.nextInt();

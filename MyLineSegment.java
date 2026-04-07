@@ -23,13 +23,11 @@ public class MyLineSegment {
      */
     double distanceToPoint(MyPoint p) {
         double dist = 0.0; // menyimpan jarak
-        // Cek apakah end ke point p searah(dot product > 0), yang berarti titik
-        // terdekat ke p adalah end
+        // Cek apakah end ke point p searah(dot product > 0), yang berarti titik terdekat ke p adalah end
         if (CG.dot(this, new MyLineSegment(this.end, p)) > 0) {
             dist = p.distanceToOtherPoints(this.end);
         }
-        // Cek apakah start ke point p searah(dot product > 0), yang berarti titik
-        // terdekat ke p adalah start
+        // Cek apakah start ke point p searah(dot product > 0), yang berarti titik terdekat ke p adalah start
         else if (CG.dot(new MyLineSegment(this.end, this.start), new MyLineSegment(this.start, p)) > 0) {
             dist = p.distanceToOtherPoints(this.start);
         } else {
@@ -65,7 +63,6 @@ public class MyLineSegment {
     boolean isIntersect(MyLineSegment other) {
     boolean potong = false;
 
-    // Hitung orientasi untuk setiap kombinasi titik ujung
     // d1 dan d2 memeriksa posisi start dan end segmen ini terhadap segmen 'other'
     double d1 = CG.ccw(other.start, other.end, this.start);
     double d2 = CG.ccw(other.start, other.end, this.end);

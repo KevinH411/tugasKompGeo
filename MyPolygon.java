@@ -36,22 +36,19 @@ public class MyPolygon {
         boolean convex = true;
         int n = this.Points.size();
         
-        // minimal butuh 3 titik
         if (n < 3) return false;
 
         // Cek setiap triplet titik yang berurutan: (p_i, p_{i+1}, p_{i+2})
         for (int i = 0; i < n; i++) {
             MyPoint p1 = this.Points.get(i);
-            MyPoint p2 = this.Points.get((i + 1) % n); // Titik selanjutnya (dengan modulo agar kembali ke indeks 0)
-            MyPoint p3 = this.Points.get((i + 2) % n); // Titik setelahnya lagi
-            
+            MyPoint p2 = this.Points.get((i + 1) % n);
+            MyPoint p3 = this.Points.get((i + 2) % n); 
             double res = CG.ccw(p1, p2, p3);
             
-            // Karena titik input sudah terurut berlawanan arah jarum jam (kiri),
-            // maka jika ada satu saja belokan ke kanan (res < 0), poligon adalah concave.
+            // jika ada satu saja belokan ke kanan (res < 0), poligon adalah concave.
             if (res < 0.0) {
                 convex = false;
-                break; // Tidak perlu lanjut mengecek jika sudah pasti concave
+                break; 
             }
         }
         return convex;
@@ -59,11 +56,24 @@ public class MyPolygon {
 
     /**
      * [6b] luas poligon ini
-     * 
-     * @return
+     * * @return
      */
     double area() {
         double area = 0.0;
+        int n = this.Points.size();
+        
+        if (n < 3) return 0.0;
+
+        // Akumulasi (x_i * y_{i+1}) - (y_i * x_{i+1})
+        for (int i = 0; i < n; i++) {
+            MyPoint p1 = this.Points.get(i);
+            MyPoint p2 = this.Points.get((i + 1) % n); // Operasi modulo agar titik terakhir terhubung ke titik ke 0
+            
+            area += (p1.x * p2.y) - (p1.y * p2.x);
+        }
+        
+        // Luas adalah setengah dari total akumulasi, dan harus bernilai absolut
+        area = Math.abs(area) / 2.0;
 
         return area;
     }
