@@ -7,8 +7,20 @@ public class MyMain {
 		Scanner sc = new Scanner(System.in); //scanner
 		int ch = sc.nextInt();				// pilihan fungsi atau keluar
 		while(ch!=0) {					//selama tidak memilih keluar
-			if (1==ch) {}
-			else if (2==ch) {}
+			//Fungsi nomor 1
+			if (1==ch) {
+				MyPoint p = new MyPoint(sc.nextDouble(), sc.nextDouble());
+				MyPoint q = new MyPoint(sc.nextDouble(), sc.nextDouble());
+				System.out.printf("%.3f\n", p.distanceToOtherPoints(q));
+			}
+			//Fungsi nomor 2
+			else if (2==ch) {
+				MyPoint p = new MyPoint(sc.nextDouble(), sc.nextDouble());
+				MyPoint q = new MyPoint(sc.nextDouble(), sc.nextDouble());
+				MyPoint r = new MyPoint(sc.nextDouble(), sc.nextDouble());
+				MyLineSegment line = new MyLineSegment(q, r);
+				System.out.printf("%.3f\n", line.distanceToPoint(p));
+			}
 			else if (3==ch) { //fungsi 3
 				MyPoint p = new MyPoint(sc.nextDouble(),sc.nextDouble());
 				MyPoint q = new MyPoint(sc.nextDouble(),sc.nextDouble());
@@ -23,8 +35,29 @@ public class MyMain {
 			else if (4==ch) {}
 			else if (5==ch) {}
 			else if (6==ch) {}
-			else if (7==ch) {}
-			else if (8==ch) {}			
+			//Fungsi nomor 7
+			else if (7==ch) {
+				int n = sc.nextInt();
+				MyPolygon polygon = new MyPolygon();
+				for(int i = 0; i < n; i ++){
+					polygon.addPoint(new MyPoint(sc.nextDouble(), sc.nextDouble()));
+				}
+				MyPoint p = new MyPoint(sc.nextDouble(), sc.nextDouble());
+				if(polygon.isPointInside(p) == true) System.out.println("In");
+				else System.out.println("Out");
+			}
+			//Fungsi nomor 8
+			else if (8==ch) {
+				int n = sc.nextInt();
+				MyPointSet pointList = new MyPointSet();
+				for(int i = 0; i < n; i++){
+					pointList.addPoint(new MyPoint(sc.nextDouble(), sc.nextDouble()));
+				}
+				pointList.sort();
+				for(MyPoint point : pointList.Points){
+					System.out.printf("%d %d\n", (int)point.x, (int)point.y);
+				}
+			}			
 			ch = sc.nextInt();				// pilihan berikutnya
 		}			
         //System.out.println(CG.ccw(p,q,t));
