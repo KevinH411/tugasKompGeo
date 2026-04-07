@@ -57,15 +57,45 @@ public class MyLineSegment {
     }
 
     /**
-     * [4] motong segmen laen?
-     * 
-     * @param other
-     * @return
-     */
-    boolean isIntersect(MyLineSegment other) {
-        boolean potong = false;
+    * [4] cek segmen berpotongan dengan segmen lain.
+    * * @param other Segmen garis lain yang akan diperiksa
+    * @return true jika berpotongan, false jika tidak
+    */
 
-        return potong;
+    boolean isIntersect(MyLineSegment other) {
+    boolean potong = false;
+
+    // Hitung orientasi untuk setiap kombinasi titik ujung
+    // d1 dan d2 memeriksa posisi start dan end segmen ini terhadap segmen 'other'
+    double d1 = CG.ccw(other.start, other.end, this.start);
+    double d2 = CG.ccw(other.start, other.end, this.end);
+    
+    // d3 dan d4 memeriksa posisi start dan end segmen 'other' terhadap segmen ini
+    double d3 = CG.ccw(this.start, this.end, other.start);
+    double d4 = CG.ccw(this.start, this.end, other.end);
+
+    // Menghandle titik-titik ujung berada pada sisi yang berbeda
+    // (d1 * d2 < 0) satu di kiri dan satu di kanan
+    // jika menyentuh (res == 0) dianggap "Ya"
+    if (((d1 > 0 && d2 < 0) || (d1 < 0 && d2 > 0) || d1 == 0 || d2 == 0) &&
+        ((d3 > 0 && d4 < 0) || (d3 < 0 && d4 > 0) || d3 == 0 || d4 == 0)) {
+        
+        // Jika kedua garis berada pada satu garis lurus yang sama, 
+        // perlu dipastikan mereka benar-benar overlap
+        if (d1 == 0 && d2 == 0 && d3 == 0 && d4 == 0) {
+            // Cek overlap pada sumbu X atau Y
+            if (Math.max(this.start.x, this.end.x) >= Math.min(other.start.x, other.end.x) &&
+                Math.max(other.start.x, other.end.x) >= Math.min(this.start.x, this.end.x) &&
+                Math.max(this.start.y, this.end.y) >= Math.min(other.start.y, other.end.y) &&
+                Math.max(other.start.y, other.end.y) >= Math.min(this.start.y, this.end.y)) {
+                potong = true;
+            }
+        } else {
+            potong = true;
+        }
     }
+
+    return potong;
+}
 
 }

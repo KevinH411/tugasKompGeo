@@ -22,17 +22,42 @@ public class MyMain {
 				System.out.printf("%.3f\n", line.distanceToPoint(p));
 			}
 			else if (3==ch) { //fungsi 3
-				MyPoint p = new MyPoint(sc.nextDouble(),sc.nextDouble());
-				MyPoint q = new MyPoint(sc.nextDouble(),sc.nextDouble());
-				MyPoint r = new MyPoint(sc.nextDouble(),sc.nextDouble());
-				MyLineSegment l = new MyLineSegment(p,q); //segmen garis/vektor dari p ke q
-				double res = l.leftTurnToPoint(r); // dari p ke q ke r apakah belok kiri/kanan/lurus
-				String arah = new String("Kolinear");
-				if (res<0.0) arah = "Kanan";
-				else if (res>0.0) arah = "Kiri";
-				System.out.println(arah);
+				MyPoint p = new MyPoint(sc.nextDouble(), sc.nextDouble());
+				MyPoint q = new MyPoint(sc.nextDouble(), sc.nextDouble());
+    			MyPoint r = new MyPoint(sc.nextDouble(), sc.nextDouble());
+    			
+				MyLineSegment line = new MyLineSegment(q, r);
+    			double res = line.leftTurnToPoint(p);
+				
+				String arah = "Kolinear";
+				if (res < 0.0) {
+					arah = "Kanan";
+				} else if (res > 0.0) {
+					arah = "Kiri";
+				}	System.out.println(arah);
 			}
-			else if (4==ch) {}
+			// Fungsi nomor 4: Apakah dua buah segmen garis saling berpotongan?
+			else if (4 == ch) {
+				// Membaca 8 buah bilangan (x1, y1, x2, y2, x3, y3, x4, y4)
+				// Segmen pertama l1 = {p, q}
+				MyPoint p = new MyPoint(sc.nextDouble(), sc.nextDouble());
+				MyPoint q = new MyPoint(sc.nextDouble(), sc.nextDouble());
+
+    			// Segmen kedua l2 = {r, s}
+    			MyPoint r = new MyPoint(sc.nextDouble(), sc.nextDouble());
+    			MyPoint s = new MyPoint(sc.nextDouble(), sc.nextDouble());
+    
+    			// Inisialisasi objek Line Segment
+    			MyLineSegment l1 = new MyLineSegment(p, q);
+    			MyLineSegment l2 = new MyLineSegment(r, s);
+    
+    			// Cek perpotongan dan tampilkan output sesuai spesifikasi
+    			if (l1.isIntersect(l2)) {
+					System.out.println("Ya");
+				} else {
+					System.out.println("Tidak");
+				}
+			}
 			else if (5==ch) {}
 			else if (6==ch) {}
 			//Fungsi nomor 7
