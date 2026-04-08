@@ -99,6 +99,7 @@ public class MyMain {
 					pointList.addPoint(new MyPoint(sc.nextDouble(), sc.nextDouble()));
 				}
 				pointList.sort();
+				System.out.println(n);
 				for(MyPoint point : pointList.Points){
 					System.out.printf("%d %d\n", (int)point.x, (int)point.y);
 				}

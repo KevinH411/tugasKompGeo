@@ -101,7 +101,7 @@ public class MyPolygon {
             if (direction == 0) {
                 if (vector.distanceToPoint(p) != 0)
                     inside = false;
-            } else if (direction > 0)
+            } else if (direction < 0)
                 inside = false;
         }
         return inside;
